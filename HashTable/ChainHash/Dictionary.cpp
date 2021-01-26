@@ -8,26 +8,26 @@
 using namespace std;
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-class CDictionary
+class CDictionaryChain
 {
 private:
 public:
 	void hieu();
 	const int static SIZE = 811; // kich co cua mang.
 
-	CDictionary();
+	CDictionaryChain();
 	/* Constructor: rong.
 	 * */
 
-	CDictionary(const CDictionary &dic);
+	CDictionaryChain(const CDictionaryChain &dic);
 	/* Constructor copy.
 	 * */
 
-	void operator = (const CDictionary &dic);
+	void operator = (const CDictionaryChain &dic);
 	/* Dinh nghia toan tu gan.
 	 * */
 
-	~CDictionary();
+	~CDictionaryChain();
 	/* Destructor.
 	 * */
 
@@ -58,7 +58,7 @@ public:
 };
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::CDictionary()
+CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::CDictionaryChain()
 {
 	for (int i = 0; i < SIZE; i++)
 	{
@@ -67,19 +67,19 @@ CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::CDictionary()
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::CDictionary(const CDictionary &dic)
+CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::CDictionaryChain(const CDictionaryChain &dic)
 {
 	
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::operator = (const CDictionary &dic)
+void CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::operator = (const CDictionaryChain &dic)
 {
 	
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::~CDictionary()
+CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::~CDictionaryChain()
 {
 	/* Ta phai thu hoi toan bo day chuyen trong tu dien.*/
 	for (int i = 0; i < SIZE; i++)
@@ -104,7 +104,7 @@ CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::~CDictionary()
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::search(const typeOfKeyDictionary & key, typeOfDataDictionary & take_data)
+bool CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::search(const typeOfKeyDictionary & key, typeOfDataDictionary & take_data)
 {
 	/* Tao bien chay.*/
 	CCell<typeOfDataDictionary, typeOfKeyDictionary> *current_ptr = m_array_datas[hash(key)];
@@ -127,7 +127,7 @@ bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::search(const typeOf
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOfDataDictionary & data_parameter, const typeOfKeyDictionary & key_parameter, bool & is_success)
+void CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOfDataDictionary & data_parameter, const typeOfKeyDictionary & key_parameter, bool & is_success)
 {
 	/* Tao bien de lay du lieu tu ham search.*/
 	typeOfDataDictionary take_data;
@@ -153,7 +153,7 @@ void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOf
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(const typeOfKeyDictionary & key)
+void CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(const typeOfKeyDictionary & key)
 {
 	/* Tao 2 con tro chay.*/
 	CCell<typeOfDataDictionary, typeOfKeyDictionary> *precede_ptr = NULL; // con tro sau.
@@ -196,7 +196,7 @@ void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-int CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::hash(const typeOfKeyDictionary & key)
+int CDictionaryChain<typeOfDataDictionary, typeOfKeyDictionary>::hash(const typeOfKeyDictionary & key)
 {
 	return (key % SIZE);
 }

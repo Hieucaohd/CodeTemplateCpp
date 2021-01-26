@@ -8,7 +8,6 @@ using namespace std;
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
 class CCell
 {
-private:
 public:
 	typeOfDataDictionary m_data;
 	typeOfKeyDictionary m_key;

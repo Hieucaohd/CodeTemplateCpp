@@ -9,16 +9,16 @@ using namespace std;
 
 /* Tu dien duoc cai dat bang bang bam dia chi mo.*/
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-class CDictionary
+class CDictionaryOpen
 {
 public:
 	const int static SIZE = 811; // Kich co cua mang.
 
-	CDictionary();
+	CDictionaryOpen();
 	/* Constructor: khoi tao mot tu dien rong.
 	 * */
 
-	~CDictionary();
+	~CDictionaryOpen();
 	/* Destructor.
 	 * */
 
@@ -59,7 +59,7 @@ public:
 };
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::CDictionary()
+CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::CDictionaryOpen()
 {
 	m_array_datas = new CEntry<typeOfDataDictionary, typeOfKeyDictionary>[SIZE];
 
@@ -70,13 +70,13 @@ CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::CDictionary()
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::~CDictionary()
+CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::~CDictionaryOpen()
 {
 	delete [] m_array_datas;
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::search(typeOfKeyDictionary & key, typeOfDataDictionary & take_data)
+bool CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::search(typeOfKeyDictionary & key, typeOfDataDictionary & take_data)
 {
 	int index_ACTIVE, index_EMPTY_DELETED;
 	if (find(key, index_ACTIVE, index_EMPTY_DELETED))
@@ -95,7 +95,7 @@ bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::search(typeOfKeyDic
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOfDataDictionary &data_parameter, const typeOfKeyDictionary &key_parameter, bool &is_success)
+void CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOfDataDictionary &data_parameter, const typeOfKeyDictionary &key_parameter, bool &is_success)
 {
 	int index_ACTIVE, index_EMPTY_DELETED;
 	
@@ -119,7 +119,7 @@ void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::insert(const typeOf
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(typeOfKeyDictionary & key)
+void CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(typeOfKeyDictionary & key)
 {
 	int index_ACTIVE, index_EMPTY_DELETED;
 
@@ -131,7 +131,7 @@ void CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::deleteElementByKey(
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::find(const typeOfKeyDictionary & key, int & index_ACTIVE, int & index_EMPTY_DELETED)
+bool CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::find(const typeOfKeyDictionary & key, int & index_ACTIVE, int & index_EMPTY_DELETED)
 {
 	int position = hash(key);
 	index_EMPTY_DELETED = position; // dat o dau day tham do.
@@ -169,13 +169,13 @@ bool CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::find(const typeOfKe
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-int CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::probing(int & position, int & number)
+int CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::probing(int & position, int & number)
 {
 	return ((position + number) % SIZE);
 }
 
 template <class typeOfDataDictionary, class typeOfKeyDictionary>
-int CDictionary<typeOfDataDictionary, typeOfKeyDictionary>::hash(const typeOfKeyDictionary & key)
+int CDictionaryOpen<typeOfDataDictionary, typeOfKeyDictionary>::hash(const typeOfKeyDictionary & key)
 {
 	return key % SIZE;
 }
